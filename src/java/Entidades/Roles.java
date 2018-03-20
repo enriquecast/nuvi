@@ -6,9 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "roles")
@@ -48,10 +44,6 @@ public class Roles implements Serializable {
     @Size(max = 100)
     @Column(name = "detalleRol")
     private String detalleRol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkRol")
-    private List<PermisosRoles> permisosRolesList;
-    @OneToMany(mappedBy = "fkRol")
-    private List<UsuariosRoles> usuariosRolesList;
 
     public Roles() {
     }
@@ -82,24 +74,6 @@ public class Roles implements Serializable {
 
     public void setDetalleRol(String detalleRol) {
         this.detalleRol = detalleRol;
-    }
-
-    @XmlTransient
-    public List<PermisosRoles> getPermisosRolesList() {
-        return permisosRolesList;
-    }
-
-    public void setPermisosRolesList(List<PermisosRoles> permisosRolesList) {
-        this.permisosRolesList = permisosRolesList;
-    }
-
-    @XmlTransient
-    public List<UsuariosRoles> getUsuariosRolesList() {
-        return usuariosRolesList;
-    }
-
-    public void setUsuariosRolesList(List<UsuariosRoles> usuariosRolesList) {
-        this.usuariosRolesList = usuariosRolesList;
     }
 
     @Override

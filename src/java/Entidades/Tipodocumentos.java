@@ -6,7 +6,6 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "tipodocumentos")
@@ -47,14 +44,6 @@ public class Tipodocumentos implements Serializable {
     @Size(max = 200)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(mappedBy = "fkTipoDocum")
-    private List<Familias> familiasList;
-    @OneToMany(mappedBy = "fkTipoDocum")
-    private List<Personal> personalList;
-    @OneToMany(mappedBy = "fkTipoDocum")
-    private List<Usuarios> usuariosList;
-    @OneToMany(mappedBy = "fkTipoDocum")
-    private List<Donaciones> donacionesList;
 
     public Tipodocumentos() {
     }
@@ -85,42 +74,6 @@ public class Tipodocumentos implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    @XmlTransient
-    public List<Familias> getFamiliasList() {
-        return familiasList;
-    }
-
-    public void setFamiliasList(List<Familias> familiasList) {
-        this.familiasList = familiasList;
-    }
-
-    @XmlTransient
-    public List<Personal> getPersonalList() {
-        return personalList;
-    }
-
-    public void setPersonalList(List<Personal> personalList) {
-        this.personalList = personalList;
-    }
-
-    @XmlTransient
-    public List<Usuarios> getUsuariosList() {
-        return usuariosList;
-    }
-
-    public void setUsuariosList(List<Usuarios> usuariosList) {
-        this.usuariosList = usuariosList;
-    }
-
-    @XmlTransient
-    public List<Donaciones> getDonacionesList() {
-        return donacionesList;
-    }
-
-    public void setDonacionesList(List<Donaciones> donacionesList) {
-        this.donacionesList = donacionesList;
     }
 
     @Override

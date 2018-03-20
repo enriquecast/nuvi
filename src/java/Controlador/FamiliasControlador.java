@@ -7,7 +7,6 @@ package Controlador;
 
 import Entidades.Familias;
 import Entidades.Proyectos;
-import Entidades.Tipoproblematica;
 import Entidades.Tipoproblematicas;
 import Facade.FamiliasFacade;
 import Facade.TipoproblematicasFacade;
@@ -38,7 +37,7 @@ public class FamiliasControlador implements Serializable {
     //List<Tipoproblematicas> listaTipoproblematicas;
     List<Object[]> listadoTipoproblematicas;
     BarChartModel graficaBarras;
-    List<Tipoproblematica> listaTipoproblematica;
+    List<Tipoproblematicas> listaTipoproblematica;
     
     @EJB
     FamiliasFacade familiasFacade;
@@ -48,25 +47,25 @@ public class FamiliasControlador implements Serializable {
     TipoproblematicasFacade tipoproblematicasFacade;
     Tipoproblematicas tipoProblematicas = new Tipoproblematicas();
     
-    Tipoproblematica tipoproblematica = new Tipoproblematica();
+    Tipoproblematicas tipoproblematica = new Tipoproblematicas();
     
     /*public List<Tipoproblematicas> ListarTipoProblematicas(){
         return tipoproblematicasFacade.findAll();
     }*/
 
-    public List<Tipoproblematica> getListaTipoproblematica() {
+    public List<Tipoproblematicas> getListaTipoproblematica() {
         return listaTipoproblematica;
     }
 
-    public void setListaTipoproblematica(List<Tipoproblematica> listaTipoproblematica) {
+    public void setListaTipoproblematica(List<Tipoproblematicas> listaTipoproblematica) {
         this.listaTipoproblematica = listaTipoproblematica;
     }
 
-    public Tipoproblematica getTipoproblematica() {
+    public Tipoproblematicas getTipoproblematica() {
         return tipoproblematica;
     }
 
-    public void setTipoproblematica(Tipoproblematica tipoproblematica) {
+    public void setTipoproblematica(Tipoproblematicas tipoproblematica) {
         this.tipoproblematica = tipoproblematica;
     }
     
@@ -123,9 +122,9 @@ public class FamiliasControlador implements Serializable {
         listadoTipoproblematicas = familiasFacade.graficarProblematica();
         
         for (Object[] elemento : listadoTipoproblematicas) {
-            Tipoproblematica tipoproblematica = new Tipoproblematica();
+            Tipoproblematicas tipoproblematica = new Tipoproblematicas();
             tipoproblematica.setTipoProblematica(elemento[0].toString());
-            tipoproblematica.setCantidad(Integer.parseInt(elemento[1].toString()));
+            //tipoproblematica.setCantidad(Integer.parseInt(elemento[1].toString()));
             
             listaTipoproblematica.add(tipoproblematica);
         }
@@ -133,12 +132,12 @@ public class FamiliasControlador implements Serializable {
     }
     
     
-    public void graficarBarra(List<Tipoproblematica> lista){
+    public void graficarBarra(List<Tipoproblematicas> lista){
         graficaBarras = new BarChartModel();
         ChartSeries serie = new ChartSeries();
         serie.setLabel("Tipo Problematica");
-        for (Tipoproblematica tipoproblematica1 : lista) {
-            serie.set(tipoproblematica1.getTipoProblematica(), tipoproblematica1.getCantidad());
+        for (Tipoproblematicas tipoproblematica1 : lista) {
+            //serie.set(tipoproblematica1.getTipoProblematica(), tipoproblematica1.getCantidad());
         }
         graficaBarras.addSeries(serie);
         graficaBarras.setTitle("Cantidad Problematicas");

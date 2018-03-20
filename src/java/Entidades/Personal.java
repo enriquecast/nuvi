@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "personal")
@@ -38,11 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Personal.findByProfesionPersonal", query = "SELECT p FROM Personal p WHERE p.profesionPersonal = :profesionPersonal")
     , @NamedQuery(name = "Personal.findByFechaNacimiento", query = "SELECT p FROM Personal p WHERE p.fechaNacimiento = :fechaNacimiento")
     , @NamedQuery(name = "Personal.findByCategoriaPersonal", query = "SELECT p FROM Personal p WHERE p.categoriaPersonal = :categoriaPersonal")
+    , @NamedQuery(name = "Personal.findByFkTipoDocum", query = "SELECT p FROM Personal p WHERE p.fkTipoDocum = :fkTipoDocum")
     , @NamedQuery(name = "Personal.findByNDocumentoPersonal", query = "SELECT p FROM Personal p WHERE p.nDocumentoPersonal = :nDocumentoPersonal")
     , @NamedQuery(name = "Personal.findByNContactoPersonal", query = "SELECT p FROM Personal p WHERE p.nContactoPersonal = :nContactoPersonal")
     , @NamedQuery(name = "Personal.findByEmailPersonal", query = "SELECT p FROM Personal p WHERE p.emailPersonal = :emailPersonal")
     , @NamedQuery(name = "Personal.findBySueldo", query = "SELECT p FROM Personal p WHERE p.sueldo = :sueldo")
-    , @NamedQuery(name = "Personal.findByDisponibilidad", query = "SELECT p FROM Personal p WHERE p.disponibilidad = :disponibilidad")})
+    , @NamedQuery(name = "Personal.findByDisponibilidad", query = "SELECT p FROM Personal p WHERE p.disponibilidad = :disponibilidad")
+    , @NamedQuery(name = "Personal.findByFkProyecto", query = "SELECT p FROM Personal p WHERE p.fkProyecto = :fkProyecto")})
 public class Personal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +66,8 @@ public class Personal implements Serializable {
     @Size(max = 45)
     @Column(name = "categoriaPersonal")
     private String categoriaPersonal;
+    @Column(name = "fkTipoDocum")
+    private Integer fkTipoDocum;
     @Size(max = 45)
     @Column(name = "nDocumentoPersonal")
     private String nDocumentoPersonal;
@@ -80,12 +82,8 @@ public class Personal implements Serializable {
     @Size(max = 19)
     @Column(name = "disponibilidad")
     private String disponibilidad;
-    @JoinColumn(name = "fkTipoDocum", referencedColumnName = "pkTipoDocum")
-    @ManyToOne
-    private Tipodocumentos fkTipoDocum;
-    @JoinColumn(name = "fkProyecto", referencedColumnName = "idProyecto")
-    @ManyToOne
-    private Proyectos fkProyecto;
+    @Column(name = "fkProyecto")
+    private Integer fkProyecto;
 
     public Personal() {
     }
@@ -142,6 +140,14 @@ public class Personal implements Serializable {
         this.categoriaPersonal = categoriaPersonal;
     }
 
+    public Integer getFkTipoDocum() {
+        return fkTipoDocum;
+    }
+
+    public void setFkTipoDocum(Integer fkTipoDocum) {
+        this.fkTipoDocum = fkTipoDocum;
+    }
+
     public String getNDocumentoPersonal() {
         return nDocumentoPersonal;
     }
@@ -182,19 +188,11 @@ public class Personal implements Serializable {
         this.disponibilidad = disponibilidad;
     }
 
-    public Tipodocumentos getFkTipoDocum() {
-        return fkTipoDocum;
-    }
-
-    public void setFkTipoDocum(Tipodocumentos fkTipoDocum) {
-        this.fkTipoDocum = fkTipoDocum;
-    }
-
-    public Proyectos getFkProyecto() {
+    public Integer getFkProyecto() {
         return fkProyecto;
     }
 
-    public void setFkProyecto(Proyectos fkProyecto) {
+    public void setFkProyecto(Integer fkProyecto) {
         this.fkProyecto = fkProyecto;
     }
 

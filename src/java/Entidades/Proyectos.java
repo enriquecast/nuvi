@@ -7,28 +7,23 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "proyectos")
@@ -45,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyectos.findByDineroRecaudado", query = "SELECT p FROM Proyectos p WHERE p.dineroRecaudado = :dineroRecaudado")
     , @NamedQuery(name = "Proyectos.findByDineroFaltante", query = "SELECT p FROM Proyectos p WHERE p.dineroFaltante = :dineroFaltante")
     , @NamedQuery(name = "Proyectos.findBySolucionProyecto", query = "SELECT p FROM Proyectos p WHERE p.solucionProyecto = :solucionProyecto")
+    , @NamedQuery(name = "Proyectos.findByFkFamilia", query = "SELECT p FROM Proyectos p WHERE p.fkFamilia = :fkFamilia")
     , @NamedQuery(name = "Proyectos.findByEstado", query = "SELECT p FROM Proyectos p WHERE p.estado = :estado")})
 public class Proyectos implements Serializable {
 
@@ -77,20 +73,11 @@ public class Proyectos implements Serializable {
     @Size(max = 1000)
     @Column(name = "solucionProyecto")
     private String solucionProyecto;
+    @Column(name = "fkFamilia")
+    private Integer fkFamilia;
     @Size(max = 13)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(mappedBy = "fkProyecto")
-    private List<MaterialesProyecto> materialesProyectoList;
-    @OneToMany(mappedBy = "fkProyecto")
-    private List<Personal> personalList;
-    @JoinColumn(name = "fkFamilia", referencedColumnName = "idFamilia")
-    @ManyToOne
-    private Familias fkFamilia;
-    @OneToMany(mappedBy = "fkProyecto")
-    private List<Donaciones> donacionesList;
-    @OneToMany(mappedBy = "fkProyecto")
-    private List<ProyectosUsuarios> proyectosUsuariosList;
 
     public Proyectos() {
     }
@@ -179,56 +166,20 @@ public class Proyectos implements Serializable {
         this.solucionProyecto = solucionProyecto;
     }
 
+    public Integer getFkFamilia() {
+        return fkFamilia;
+    }
+
+    public void setFkFamilia(Integer fkFamilia) {
+        this.fkFamilia = fkFamilia;
+    }
+
     public String getEstado() {
         return estado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    @XmlTransient
-    public List<MaterialesProyecto> getMaterialesProyectoList() {
-        return materialesProyectoList;
-    }
-
-    public void setMaterialesProyectoList(List<MaterialesProyecto> materialesProyectoList) {
-        this.materialesProyectoList = materialesProyectoList;
-    }
-
-    @XmlTransient
-    public List<Personal> getPersonalList() {
-        return personalList;
-    }
-
-    public void setPersonalList(List<Personal> personalList) {
-        this.personalList = personalList;
-    }
-
-    public Familias getFkFamilia() {
-        return fkFamilia;
-    }
-
-    public void setFkFamilia(Familias fkFamilia) {
-        this.fkFamilia = fkFamilia;
-    }
-
-    @XmlTransient
-    public List<Donaciones> getDonacionesList() {
-        return donacionesList;
-    }
-
-    public void setDonacionesList(List<Donaciones> donacionesList) {
-        this.donacionesList = donacionesList;
-    }
-
-    @XmlTransient
-    public List<ProyectosUsuarios> getProyectosUsuariosList() {
-        return proyectosUsuariosList;
-    }
-
-    public void setProyectosUsuariosList(List<ProyectosUsuarios> proyectosUsuariosList) {
-        this.proyectosUsuariosList = proyectosUsuariosList;
     }
 
     @Override

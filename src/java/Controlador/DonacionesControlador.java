@@ -80,7 +80,7 @@ public class DonacionesControlador implements Serializable {
     }
     
     public String editarDonacion(){
-        donaciones.setFkProyecto(proyectosFacade.find(proyectos.getIdProyecto()));
+        //donaciones.setFkProyecto(proyectosFacade.find(proyectos.getIdProyecto()));
         donacionesFacade.edit(donaciones);
         return "ListaDonacion";
     }

@@ -6,7 +6,6 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "tipoproblematicas")
@@ -47,8 +44,6 @@ public class Tipoproblematicas implements Serializable {
     @Size(max = 200)
     @Column(name = "detalleProblematica")
     private String detalleProblematica;
-    @OneToMany(mappedBy = "fkTipoProblematica")
-    private List<Familias> familiasList;
 
     public Tipoproblematicas() {
     }
@@ -79,15 +74,6 @@ public class Tipoproblematicas implements Serializable {
 
     public void setDetalleProblematica(String detalleProblematica) {
         this.detalleProblematica = detalleProblematica;
-    }
-
-    @XmlTransient
-    public List<Familias> getFamiliasList() {
-        return familiasList;
-    }
-
-    public void setFamiliasList(List<Familias> familiasList) {
-        this.familiasList = familiasList;
     }
 
     @Override

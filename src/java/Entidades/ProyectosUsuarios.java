@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,14 +19,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "proyectos_usuarios")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProyectosUsuarios.findAll", query = "SELECT p FROM ProyectosUsuarios p")
-    , @NamedQuery(name = "ProyectosUsuarios.findByIdProyectoUsuarios", query = "SELECT p FROM ProyectosUsuarios p WHERE p.idProyectoUsuarios = :idProyectoUsuarios")})
+    , @NamedQuery(name = "ProyectosUsuarios.findByIdProyectoUsuarios", query = "SELECT p FROM ProyectosUsuarios p WHERE p.idProyectoUsuarios = :idProyectoUsuarios")
+    , @NamedQuery(name = "ProyectosUsuarios.findByFkProyecto", query = "SELECT p FROM ProyectosUsuarios p WHERE p.fkProyecto = :fkProyecto")
+    , @NamedQuery(name = "ProyectosUsuarios.findByFkUsuario", query = "SELECT p FROM ProyectosUsuarios p WHERE p.fkUsuario = :fkUsuario")})
 public class ProyectosUsuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,12 +37,10 @@ public class ProyectosUsuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "idProyectoUsuarios")
     private Integer idProyectoUsuarios;
-    @JoinColumn(name = "fkProyecto", referencedColumnName = "idProyecto")
-    @ManyToOne
-    private Proyectos fkProyecto;
-    @JoinColumn(name = "fkUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne
-    private Usuarios fkUsuario;
+    @Column(name = "fkProyecto")
+    private Integer fkProyecto;
+    @Column(name = "fkUsuario")
+    private Integer fkUsuario;
 
     public ProyectosUsuarios() {
     }
@@ -59,19 +57,19 @@ public class ProyectosUsuarios implements Serializable {
         this.idProyectoUsuarios = idProyectoUsuarios;
     }
 
-    public Proyectos getFkProyecto() {
+    public Integer getFkProyecto() {
         return fkProyecto;
     }
 
-    public void setFkProyecto(Proyectos fkProyecto) {
+    public void setFkProyecto(Integer fkProyecto) {
         this.fkProyecto = fkProyecto;
     }
 
-    public Usuarios getFkUsuario() {
+    public Integer getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(Usuarios fkUsuario) {
+    public void setFkUsuario(Integer fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
 

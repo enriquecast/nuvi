@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "casos")
@@ -35,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Casos.findByDetalleProblema", query = "SELECT c FROM Casos c WHERE c.detalleProblema = :detalleProblema")
     , @NamedQuery(name = "Casos.findByDetalleSoluci\u00f3n", query = "SELECT c FROM Casos c WHERE c.detalleSoluci\u00f3n = :detalleSoluci\u00f3n")
     , @NamedQuery(name = "Casos.findByEstadoCaso", query = "SELECT c FROM Casos c WHERE c.estadoCaso = :estadoCaso")
+    , @NamedQuery(name = "Casos.findByFkUsuario", query = "SELECT c FROM Casos c WHERE c.fkUsuario = :fkUsuario")
     , @NamedQuery(name = "Casos.findByCalificacion", query = "SELECT c FROM Casos c WHERE c.calificacion = :calificacion")})
 public class Casos implements Serializable {
 
@@ -59,12 +58,11 @@ public class Casos implements Serializable {
     @Size(max = 15)
     @Column(name = "EstadoCaso")
     private String estadoCaso;
+    @Column(name = "fkUsuario")
+    private Integer fkUsuario;
     @Size(max = 2)
     @Column(name = "calificacion")
     private String calificacion;
-    @JoinColumn(name = "fkUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne
-    private Usuarios fkUsuario;
 
     public Casos() {
     }
@@ -121,20 +119,20 @@ public class Casos implements Serializable {
         this.estadoCaso = estadoCaso;
     }
 
+    public Integer getFkUsuario() {
+        return fkUsuario;
+    }
+
+    public void setFkUsuario(Integer fkUsuario) {
+        this.fkUsuario = fkUsuario;
+    }
+
     public String getCalificacion() {
         return calificacion;
     }
 
     public void setCalificacion(String calificacion) {
         this.calificacion = calificacion;
-    }
-
-    public Usuarios getFkUsuario() {
-        return fkUsuario;
-    }
-
-    public void setFkUsuario(Usuarios fkUsuario) {
-        this.fkUsuario = fkUsuario;
     }
 
     @Override

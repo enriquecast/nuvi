@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "donaciones")
@@ -35,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Donaciones.findByIdDonacion", query = "SELECT d FROM Donaciones d WHERE d.idDonacion = :idDonacion")
     , @NamedQuery(name = "Donaciones.findByNombreDonador", query = "SELECT d FROM Donaciones d WHERE d.nombreDonador = :nombreDonador")
     , @NamedQuery(name = "Donaciones.findByApellidoDonador", query = "SELECT d FROM Donaciones d WHERE d.apellidoDonador = :apellidoDonador")
+    , @NamedQuery(name = "Donaciones.findByFkTipoDocum", query = "SELECT d FROM Donaciones d WHERE d.fkTipoDocum = :fkTipoDocum")
     , @NamedQuery(name = "Donaciones.findByNDocumentoDonador", query = "SELECT d FROM Donaciones d WHERE d.nDocumentoDonador = :nDocumentoDonador")
     , @NamedQuery(name = "Donaciones.findByNContactoDonador", query = "SELECT d FROM Donaciones d WHERE d.nContactoDonador = :nContactoDonador")
     , @NamedQuery(name = "Donaciones.findByEmailDonador", query = "SELECT d FROM Donaciones d WHERE d.emailDonador = :emailDonador")
@@ -42,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Donaciones.findByFechaDonacion", query = "SELECT d FROM Donaciones d WHERE d.fechaDonacion = :fechaDonacion")
     , @NamedQuery(name = "Donaciones.findByDireccion", query = "SELECT d FROM Donaciones d WHERE d.direccion = :direccion")
     , @NamedQuery(name = "Donaciones.findByCiudad", query = "SELECT d FROM Donaciones d WHERE d.ciudad = :ciudad")
+    , @NamedQuery(name = "Donaciones.findByFkProyecto", query = "SELECT d FROM Donaciones d WHERE d.fkProyecto = :fkProyecto")
     , @NamedQuery(name = "Donaciones.findByImgComporbante", query = "SELECT d FROM Donaciones d WHERE d.imgComporbante = :imgComporbante")})
 public class Donaciones implements Serializable {
 
@@ -57,6 +57,8 @@ public class Donaciones implements Serializable {
     @Size(max = 45)
     @Column(name = "apellidoDonador")
     private String apellidoDonador;
+    @Column(name = "fkTipoDocum")
+    private Integer fkTipoDocum;
     @Size(max = 45)
     @Column(name = "nDocumentoDonador")
     private String nDocumentoDonador;
@@ -77,15 +79,11 @@ public class Donaciones implements Serializable {
     @Size(max = 30)
     @Column(name = "ciudad")
     private String ciudad;
+    @Column(name = "fkProyecto")
+    private Integer fkProyecto;
     @Size(max = 45)
     @Column(name = "imgComporbante")
     private String imgComporbante;
-    @JoinColumn(name = "fkTipoDocum", referencedColumnName = "pkTipoDocum")
-    @ManyToOne
-    private Tipodocumentos fkTipoDocum;
-    @JoinColumn(name = "fkProyecto", referencedColumnName = "idProyecto")
-    @ManyToOne
-    private Proyectos fkProyecto;
 
     public Donaciones() {
     }
@@ -116,6 +114,14 @@ public class Donaciones implements Serializable {
 
     public void setApellidoDonador(String apellidoDonador) {
         this.apellidoDonador = apellidoDonador;
+    }
+
+    public Integer getFkTipoDocum() {
+        return fkTipoDocum;
+    }
+
+    public void setFkTipoDocum(Integer fkTipoDocum) {
+        this.fkTipoDocum = fkTipoDocum;
     }
 
     public String getNDocumentoDonador() {
@@ -174,28 +180,20 @@ public class Donaciones implements Serializable {
         this.ciudad = ciudad;
     }
 
+    public Integer getFkProyecto() {
+        return fkProyecto;
+    }
+
+    public void setFkProyecto(Integer fkProyecto) {
+        this.fkProyecto = fkProyecto;
+    }
+
     public String getImgComporbante() {
         return imgComporbante;
     }
 
     public void setImgComporbante(String imgComporbante) {
         this.imgComporbante = imgComporbante;
-    }
-
-    public Tipodocumentos getFkTipoDocum() {
-        return fkTipoDocum;
-    }
-
-    public void setFkTipoDocum(Tipodocumentos fkTipoDocum) {
-        this.fkTipoDocum = fkTipoDocum;
-    }
-
-    public Proyectos getFkProyecto() {
-        return fkProyecto;
-    }
-
-    public void setFkProyecto(Proyectos fkProyecto) {
-        this.fkProyecto = fkProyecto;
     }
 
     @Override

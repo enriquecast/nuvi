@@ -12,23 +12,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "permisos_roles")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PermisosRoles.findAll", query = "SELECT p FROM PermisosRoles p")
-    , @NamedQuery(name = "PermisosRoles.findByPkpermisosRoles", query = "SELECT p FROM PermisosRoles p WHERE p.pkpermisosRoles = :pkpermisosRoles")})
+    , @NamedQuery(name = "PermisosRoles.findByPkpermisosRoles", query = "SELECT p FROM PermisosRoles p WHERE p.pkpermisosRoles = :pkpermisosRoles")
+    , @NamedQuery(name = "PermisosRoles.findByFkRol", query = "SELECT p FROM PermisosRoles p WHERE p.fkRol = :fkRol")
+    , @NamedQuery(name = "PermisosRoles.findByFkPermisos", query = "SELECT p FROM PermisosRoles p WHERE p.fkPermisos = :fkPermisos")})
 public class PermisosRoles implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,18 +38,26 @@ public class PermisosRoles implements Serializable {
     @Basic(optional = false)
     @Column(name = "pkpermisosRoles")
     private Integer pkpermisosRoles;
-    @JoinColumn(name = "fkRol", referencedColumnName = "idRol")
-    @ManyToOne(optional = false)
-    private Roles fkRol;
-    @JoinColumn(name = "fkPermisos", referencedColumnName = "idPermisos")
-    @ManyToOne(optional = false)
-    private Permisos fkPermisos;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fkRol")
+    private int fkRol;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fkPermisos")
+    private int fkPermisos;
 
     public PermisosRoles() {
     }
 
     public PermisosRoles(Integer pkpermisosRoles) {
         this.pkpermisosRoles = pkpermisosRoles;
+    }
+
+    public PermisosRoles(Integer pkpermisosRoles, int fkRol, int fkPermisos) {
+        this.pkpermisosRoles = pkpermisosRoles;
+        this.fkRol = fkRol;
+        this.fkPermisos = fkPermisos;
     }
 
     public Integer getPkpermisosRoles() {
@@ -59,19 +68,19 @@ public class PermisosRoles implements Serializable {
         this.pkpermisosRoles = pkpermisosRoles;
     }
 
-    public Roles getFkRol() {
+    public int getFkRol() {
         return fkRol;
     }
 
-    public void setFkRol(Roles fkRol) {
+    public void setFkRol(int fkRol) {
         this.fkRol = fkRol;
     }
 
-    public Permisos getFkPermisos() {
+    public int getFkPermisos() {
         return fkPermisos;
     }
 
-    public void setFkPermisos(Permisos fkPermisos) {
+    public void setFkPermisos(int fkPermisos) {
         this.fkPermisos = fkPermisos;
     }
 

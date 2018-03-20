@@ -6,26 +6,21 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "usuarios")
@@ -35,6 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario")
     , @NamedQuery(name = "Usuarios.findByNombreUsuario", query = "SELECT u FROM Usuarios u WHERE u.nombreUsuario = :nombreUsuario")
     , @NamedQuery(name = "Usuarios.findByApellidoUsuario", query = "SELECT u FROM Usuarios u WHERE u.apellidoUsuario = :apellidoUsuario")
+    , @NamedQuery(name = "Usuarios.findByFkTipoDocum", query = "SELECT u FROM Usuarios u WHERE u.fkTipoDocum = :fkTipoDocum")
     , @NamedQuery(name = "Usuarios.findByNDocumentoUsuario", query = "SELECT u FROM Usuarios u WHERE u.nDocumentoUsuario = :nDocumentoUsuario")
     , @NamedQuery(name = "Usuarios.findByPasswordUsuario", query = "SELECT u FROM Usuarios u WHERE u.passwordUsuario = :passwordUsuario")
     , @NamedQuery(name = "Usuarios.findByTelefonoUsuario", query = "SELECT u FROM Usuarios u WHERE u.telefonoUsuario = :telefonoUsuario")
@@ -53,6 +49,8 @@ public class Usuarios implements Serializable {
     @Size(max = 45)
     @Column(name = "apellidoUsuario")
     private String apellidoUsuario;
+    @Column(name = "fkTipoDocum")
+    private Integer fkTipoDocum;
     @Size(max = 45)
     @Column(name = "nDocumentoUsuario")
     private String nDocumentoUsuario;
@@ -65,15 +63,6 @@ public class Usuarios implements Serializable {
     @Size(max = 45)
     @Column(name = "correoElectronico")
     private String correoElectronico;
-    @JoinColumn(name = "fkTipoDocum", referencedColumnName = "pkTipoDocum")
-    @ManyToOne
-    private Tipodocumentos fkTipoDocum;
-    @OneToMany(mappedBy = "fkUsuario")
-    private List<Casos> casosList;
-    @OneToMany(mappedBy = "fkUsuario")
-    private List<ProyectosUsuarios> proyectosUsuariosList;
-    @OneToMany(mappedBy = "fkUsuario")
-    private List<UsuariosRoles> usuariosRolesList;
 
     public Usuarios() {
     }
@@ -106,6 +95,14 @@ public class Usuarios implements Serializable {
         this.apellidoUsuario = apellidoUsuario;
     }
 
+    public Integer getFkTipoDocum() {
+        return fkTipoDocum;
+    }
+
+    public void setFkTipoDocum(Integer fkTipoDocum) {
+        this.fkTipoDocum = fkTipoDocum;
+    }
+
     public String getNDocumentoUsuario() {
         return nDocumentoUsuario;
     }
@@ -136,41 +133,6 @@ public class Usuarios implements Serializable {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
-    }
-
-    public Tipodocumentos getFkTipoDocum() {
-        return fkTipoDocum;
-    }
-
-    public void setFkTipoDocum(Tipodocumentos fkTipoDocum) {
-        this.fkTipoDocum = fkTipoDocum;
-    }
-
-    @XmlTransient
-    public List<Casos> getCasosList() {
-        return casosList;
-    }
-
-    public void setCasosList(List<Casos> casosList) {
-        this.casosList = casosList;
-    }
-
-    @XmlTransient
-    public List<ProyectosUsuarios> getProyectosUsuariosList() {
-        return proyectosUsuariosList;
-    }
-
-    public void setProyectosUsuariosList(List<ProyectosUsuarios> proyectosUsuariosList) {
-        this.proyectosUsuariosList = proyectosUsuariosList;
-    }
-
-    @XmlTransient
-    public List<UsuariosRoles> getUsuariosRolesList() {
-        return usuariosRolesList;
-    }
-
-    public void setUsuariosRolesList(List<UsuariosRoles> usuariosRolesList) {
-        this.usuariosRolesList = usuariosRolesList;
     }
 
     @Override

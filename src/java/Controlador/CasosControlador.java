@@ -69,7 +69,7 @@ public class CasosControlador implements Serializable {
         return "AsignacionCasos";
     }
     public String asignarCasoaTecnico(){
-        casos.setFkUsuario(usuariosFacade.find(usuario.getIdUsuario()));
+        //casos.setFkUsuario(usuariosFacade.find(usuario.getIdUsuario()));
         casosFacade.edit(casos);
         return "RespuestaCasos";
     }

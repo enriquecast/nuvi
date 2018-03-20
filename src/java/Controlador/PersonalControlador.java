@@ -26,17 +26,14 @@ public class PersonalControlador implements Serializable {
     }
     
     @EJB
-    
     ProyectosFacade proyectosFacade;
     Proyectos proyectos = new Proyectos();
         
-    @EJB
-    
+    @EJB 
     PersonalFacade personalFacade;
     Personal personal = new Personal();
     
     @EJB
-    
     TipodocumentosFacade tipodocumentoFacade;
     Tipodocumentos tipodocumentos = new Tipodocumentos();
 
@@ -67,7 +64,7 @@ public class PersonalControlador implements Serializable {
     public String registrarPersonal(){
         personalFacade.create(personal);
         personal = new Personal();
-        return "listaVoluntarios";
+        return "listaPersonal";
     }
     
     public List<Personal> listarPersonal(){

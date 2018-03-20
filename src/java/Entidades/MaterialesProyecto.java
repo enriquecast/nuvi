@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "materiales_proyecto")
@@ -29,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "MaterialesProyecto.findAll", query = "SELECT m FROM MaterialesProyecto m")
     , @NamedQuery(name = "MaterialesProyecto.findByIdMaterialCotizacion", query = "SELECT m FROM MaterialesProyecto m WHERE m.idMaterialCotizacion = :idMaterialCotizacion")
+    , @NamedQuery(name = "MaterialesProyecto.findByFkProyecto", query = "SELECT m FROM MaterialesProyecto m WHERE m.fkProyecto = :fkProyecto")
+    , @NamedQuery(name = "MaterialesProyecto.findByFkMaterial", query = "SELECT m FROM MaterialesProyecto m WHERE m.fkMaterial = :fkMaterial")
     , @NamedQuery(name = "MaterialesProyecto.findByCantidadMaterial", query = "SELECT m FROM MaterialesProyecto m WHERE m.cantidadMaterial = :cantidadMaterial")
     , @NamedQuery(name = "MaterialesProyecto.findByValorunitario", query = "SELECT m FROM MaterialesProyecto m WHERE m.valorunitario = :valorunitario")
     , @NamedQuery(name = "MaterialesProyecto.findByImporte", query = "SELECT m FROM MaterialesProyecto m WHERE m.importe = :importe")})
@@ -40,6 +40,10 @@ public class MaterialesProyecto implements Serializable {
     @Basic(optional = false)
     @Column(name = "idMaterialCotizacion")
     private Integer idMaterialCotizacion;
+    @Column(name = "fkProyecto")
+    private Integer fkProyecto;
+    @Column(name = "fkMaterial")
+    private Integer fkMaterial;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "cantidadMaterial")
     private Float cantidadMaterial;
@@ -47,12 +51,6 @@ public class MaterialesProyecto implements Serializable {
     private Float valorunitario;
     @Column(name = "importe")
     private Float importe;
-    @JoinColumn(name = "fkMaterial", referencedColumnName = "idMaterial")
-    @ManyToOne
-    private Materiales fkMaterial;
-    @JoinColumn(name = "fkProyecto", referencedColumnName = "idProyecto")
-    @ManyToOne
-    private Proyectos fkProyecto;
 
     public MaterialesProyecto() {
     }
@@ -67,6 +65,22 @@ public class MaterialesProyecto implements Serializable {
 
     public void setIdMaterialCotizacion(Integer idMaterialCotizacion) {
         this.idMaterialCotizacion = idMaterialCotizacion;
+    }
+
+    public Integer getFkProyecto() {
+        return fkProyecto;
+    }
+
+    public void setFkProyecto(Integer fkProyecto) {
+        this.fkProyecto = fkProyecto;
+    }
+
+    public Integer getFkMaterial() {
+        return fkMaterial;
+    }
+
+    public void setFkMaterial(Integer fkMaterial) {
+        this.fkMaterial = fkMaterial;
     }
 
     public Float getCantidadMaterial() {
@@ -91,22 +105,6 @@ public class MaterialesProyecto implements Serializable {
 
     public void setImporte(Float importe) {
         this.importe = importe;
-    }
-
-    public Materiales getFkMaterial() {
-        return fkMaterial;
-    }
-
-    public void setFkMaterial(Materiales fkMaterial) {
-        this.fkMaterial = fkMaterial;
-    }
-
-    public Proyectos getFkProyecto() {
-        return fkProyecto;
-    }
-
-    public void setFkProyecto(Proyectos fkProyecto) {
-        this.fkProyecto = fkProyecto;
     }
 
     @Override

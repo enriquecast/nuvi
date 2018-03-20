@@ -7,28 +7,23 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "familias")
@@ -39,12 +34,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Familias.findByFechaVisita", query = "SELECT f FROM Familias f WHERE f.fechaVisita = :fechaVisita")
     , @NamedQuery(name = "Familias.findByNombreCdeFamilia", query = "SELECT f FROM Familias f WHERE f.nombreCdeFamilia = :nombreCdeFamilia")
     , @NamedQuery(name = "Familias.findByApellidoCdeFamilia", query = "SELECT f FROM Familias f WHERE f.apellidoCdeFamilia = :apellidoCdeFamilia")
+    , @NamedQuery(name = "Familias.findByFkTipoDocum", query = "SELECT f FROM Familias f WHERE f.fkTipoDocum = :fkTipoDocum")
     , @NamedQuery(name = "Familias.findByNDocumentoCdeFamilia", query = "SELECT f FROM Familias f WHERE f.nDocumentoCdeFamilia = :nDocumentoCdeFamilia")
     , @NamedQuery(name = "Familias.findByNIntegrantesFamilia", query = "SELECT f FROM Familias f WHERE f.nIntegrantesFamilia = :nIntegrantesFamilia")
     , @NamedQuery(name = "Familias.findByLocalidadFamilia", query = "SELECT f FROM Familias f WHERE f.localidadFamilia = :localidadFamilia")
     , @NamedQuery(name = "Familias.findByBarrioFamilia", query = "SELECT f FROM Familias f WHERE f.barrioFamilia = :barrioFamilia")
     , @NamedQuery(name = "Familias.findByDireccionFamilia", query = "SELECT f FROM Familias f WHERE f.direccionFamilia = :direccionFamilia")
-    , @NamedQuery(name = "Familias.findByCiudadFamilia", query = "SELECT f FROM Familias f WHERE f.ciudadFamilia = :ciudadFamilia")})
+    , @NamedQuery(name = "Familias.findByCiudadFamilia", query = "SELECT f FROM Familias f WHERE f.ciudadFamilia = :ciudadFamilia")
+    , @NamedQuery(name = "Familias.findByFkTipoProblematica", query = "SELECT f FROM Familias f WHERE f.fkTipoProblematica = :fkTipoProblematica")})
 public class Familias implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,6 +59,8 @@ public class Familias implements Serializable {
     @Size(max = 45)
     @Column(name = "apellidoCdeFamilia")
     private String apellidoCdeFamilia;
+    @Column(name = "fkTipoDocum")
+    private Integer fkTipoDocum;
     @Size(max = 45)
     @Column(name = "nDocumentoCdeFamilia")
     private String nDocumentoCdeFamilia;
@@ -78,14 +77,8 @@ public class Familias implements Serializable {
     @Size(max = 45)
     @Column(name = "ciudadFamilia")
     private String ciudadFamilia;
-    @JoinColumn(name = "fkTipoDocum", referencedColumnName = "pkTipoDocum")
-    @ManyToOne
-    private Tipodocumentos fkTipoDocum;
-    @JoinColumn(name = "fkTipoProblematica", referencedColumnName = "idTipoProblematica")
-    @ManyToOne
-    private Tipoproblematicas fkTipoProblematica;
-    @OneToMany(mappedBy = "fkFamilia")
-    private List<Proyectos> proyectosList;
+    @Column(name = "fkTipoProblematica")
+    private Integer fkTipoProblematica;
 
     public Familias() {
     }
@@ -124,6 +117,14 @@ public class Familias implements Serializable {
 
     public void setApellidoCdeFamilia(String apellidoCdeFamilia) {
         this.apellidoCdeFamilia = apellidoCdeFamilia;
+    }
+
+    public Integer getFkTipoDocum() {
+        return fkTipoDocum;
+    }
+
+    public void setFkTipoDocum(Integer fkTipoDocum) {
+        this.fkTipoDocum = fkTipoDocum;
     }
 
     public String getNDocumentoCdeFamilia() {
@@ -174,29 +175,12 @@ public class Familias implements Serializable {
         this.ciudadFamilia = ciudadFamilia;
     }
 
-    public Tipodocumentos getFkTipoDocum() {
-        return fkTipoDocum;
-    }
-
-    public void setFkTipoDocum(Tipodocumentos fkTipoDocum) {
-        this.fkTipoDocum = fkTipoDocum;
-    }
-
-    public Tipoproblematicas getFkTipoProblematica() {
+    public Integer getFkTipoProblematica() {
         return fkTipoProblematica;
     }
 
-    public void setFkTipoProblematica(Tipoproblematicas fkTipoProblematica) {
+    public void setFkTipoProblematica(Integer fkTipoProblematica) {
         this.fkTipoProblematica = fkTipoProblematica;
-    }
-
-    @XmlTransient
-    public List<Proyectos> getProyectosList() {
-        return proyectosList;
-    }
-
-    public void setProyectosList(List<Proyectos> proyectosList) {
-        this.proyectosList = proyectosList;
     }
 
     @Override

@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,14 +19,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Diego Alejandro
+ * @author Enrique
  */
 @Entity
 @Table(name = "usuarios_roles")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UsuariosRoles.findAll", query = "SELECT u FROM UsuariosRoles u")
-    , @NamedQuery(name = "UsuariosRoles.findByIdUsuariosRoles", query = "SELECT u FROM UsuariosRoles u WHERE u.idUsuariosRoles = :idUsuariosRoles")})
+    , @NamedQuery(name = "UsuariosRoles.findByIdUsuariosRoles", query = "SELECT u FROM UsuariosRoles u WHERE u.idUsuariosRoles = :idUsuariosRoles")
+    , @NamedQuery(name = "UsuariosRoles.findByFkUsuario", query = "SELECT u FROM UsuariosRoles u WHERE u.fkUsuario = :fkUsuario")
+    , @NamedQuery(name = "UsuariosRoles.findByFkRol", query = "SELECT u FROM UsuariosRoles u WHERE u.fkRol = :fkRol")})
 public class UsuariosRoles implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,12 +37,10 @@ public class UsuariosRoles implements Serializable {
     @Basic(optional = false)
     @Column(name = "idUsuariosRoles")
     private Integer idUsuariosRoles;
-    @JoinColumn(name = "fkUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne
-    private Usuarios fkUsuario;
-    @JoinColumn(name = "fkRol", referencedColumnName = "idRol")
-    @ManyToOne
-    private Roles fkRol;
+    @Column(name = "fkUsuario")
+    private Integer fkUsuario;
+    @Column(name = "fkRol")
+    private Integer fkRol;
 
     public UsuariosRoles() {
     }
@@ -59,19 +57,19 @@ public class UsuariosRoles implements Serializable {
         this.idUsuariosRoles = idUsuariosRoles;
     }
 
-    public Usuarios getFkUsuario() {
+    public Integer getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(Usuarios fkUsuario) {
+    public void setFkUsuario(Integer fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
 
-    public Roles getFkRol() {
+    public Integer getFkRol() {
         return fkRol;
     }
 
-    public void setFkRol(Roles fkRol) {
+    public void setFkRol(Integer fkRol) {
         this.fkRol = fkRol;
     }
 

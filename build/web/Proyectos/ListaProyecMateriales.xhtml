@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="content">
+                <div style="height: 800px">
+                    <f:view>
+                        <h:form>
+                            <h1><h:outputText style="text-align: center; font-family: cursive" value="Lista proyectos"/></h1>
+                            <p:dataTable id="tbl" value="#{proyectosControlador.listarProyecto()}" var="item" paginator="true" rowKey="#{item.idProyecto}" rows="10" rowsPerPageTemplate="10,20,30,40,50">
+                                <p:column filterBy="#{item.nombreProyecto}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Proyecto"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombreProyecto}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Costo Total Material"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.costoMaterial}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Costo Total Personal"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.costoPersonal}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Costo Total Proyecto"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.costoProyecto}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Dinero Recaudado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dineroRecaudado}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Dinero Restante"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dineroFaltante}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Consultar Materiales"/>
+                                    </f:facet>
+                                    <h:commandButton id="btnCargarMateriales" value="Consultar Materiales" action="#{materialControlador.llenarTabla(item)}" class="btn btn-info"></h:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                            <l><strong>Descargar Excel</strong></l>
+                            <h:commandLink style="margin-left: 50px ">
+                                <p:graphicImage  id="excelDown" value="../resources/imagenes/Icono_excel.png" style="width: 35px; margin: 0px"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="ListDonaciones"/>
+                            </h:commandLink>
+                        </h:form>
+                    </f:view>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

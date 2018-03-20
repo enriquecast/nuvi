@@ -1,0 +1,42 @@
+.logo_2{
+	width: 85px;
+	height: 45px;
+	margin-top: 2px;
+}
+.prueba{
+	background-color: orange;
+	width: 100%;
+	height: 1000px;
+}
+
+.btn-default {
+    top: 25%;
+    left:25%; 
+    color: #999; 
+    background: #fffccc; 
+} 
+.prueba{
+	background: red;
+	width: 100%;
+	height: 800px;
+}
+.MiTipoTitulo{
+	color: #6C087D;
+	font-family: Overpass; 
+}
+.contenido-1{
+	margin-top: 50px;
+}
+.estilofooter{
+	float: right;
+}
+.flotante {
+    display:scroll;
+    position:fixed;
+    bottom:320px;
+    right:0px;
+}
+.textoLetra{
+	color: #000;
+	font-family: Overpass; 
+}

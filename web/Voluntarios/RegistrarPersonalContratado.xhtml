@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="Registrar Personal contratado"/></h1>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nombre :" for="nombrePersonal" />
+                            <p:inputText id="nombrePersonal" value="#{personalControlador.personal.nombrePersonal}" title="NombrePersonal" />
+                            <p:outputLabel value="Apellido :" for="apellidoPersonal" />
+                            <p:inputText id="apellidoPersonal" value="#{personalControlador.personal.apellidoPersonal}" title="ApellidoPersonal" />
+                            <p:outputLabel value="Profesion :" for="profesionPersonal" />
+                            <p:inputText id="profesionPersonal" value="#{personalControlador.personal.profesionPersonal}" title="ProfesionPersonal" />
+                            <p:outputLabel value="Categoria :" for="categoriaPersonal" />
+                            <p:inputText id="categoriaPersonal" value="#{personalControlador.personal.categoriaPersonal}" title="CategoriaPersonal" />
+                            <p:outputLabel value="Tipo de identificación :" for="fkTipoDocum" />
+                            <p:selectOneMenu id="fkTipoDocum" value="#{personalControlador.tipodocumentos.pkTipoDocum}" >
+                                <f:selectItem itemValue="" itemLabel="Tipo Documento"/>
+                                <f:selectItems value="#{tipodocumentosControlador.listarTipoDocumentos()}" var="tipoDocumentos" itemValue="#{tipoDocumentos.pkTipoDocum}" itemLabel="#{tipoDocumentos.nombreTipoDocum}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Número identificación :" for="NDocumentoPersonal" />
+                            <p:inputText id="NDocumentoPersonal" value="#{personalControlador.personal.NDocumentoPersonal}" title="NDocumentoPersonal" />
+                            <p:outputLabel value="Contacto :" for="NContactoPersonal" />
+                            <p:inputText id="NContactoPersonal" value="#{personalControlador.personal.NContactoPersonal}" title="NContactoPersonal" />
+                            <p:outputLabel value="Email :" for="emailPersonal" />
+                            <p:inputText id="emailPersonal" value="#{personalControlador.personal.emailPersonal}" title="EmailPersonal" />
+                            <p:outputLabel value="Sueldo :" for="sueldo" />
+                            <p:inputText id="sueldo" value="#{personalControlador.personal.sueldo}" title="Sueldo" />
+                        </p:panelGrid>
+                        <br></br>
+                        <h:commandButton id="btnRegistarProveedor" value="Registrar" action="#{personalControlador.registrarPersonal()}" title="registrar" style="width:80px" class="btn btn-success"></h:commandButton>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

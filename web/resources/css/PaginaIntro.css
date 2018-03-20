@@ -1,0 +1,483 @@
+
+
+
+*{
+  
+  margin: 0px auto;
+  padding: 0px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+
+/*Iniciomenusocial*/
+.social{
+
+  position: fixed;
+  left: 0px;
+  margin-top: 300px;
+  z-index: 2000;
+
+}
+
+.social ul{
+
+  list-style: none;
+  margin-top: 50px;
+
+}
+
+
+.social ul li a {
+
+  display: inline-block;
+  color: #fff;
+  background: #000;
+  padding: 10px 15px;
+  text-decoration: none;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+  font-size: 16px;
+
+}
+
+.social ul li .icon-facebook{background:#3b5998;}
+.social ul li .icon-twitter{background:#00abf0;}
+.social ul li .icon-youtube{background:#ae181f;}
+.social ul li .icon-google{background: #d95232 ;}
+.social ul li .icon-mail{background: #666666;}
+
+
+.social ul li a:hover{
+  padding: 10px 30px;
+  background: #000;
+}
+
+
+
+/*finmenusoocial*/
+
+.contenedor1{
+
+	width: 1000px;
+	height: 200px;
+        margin: 40px auto;
+  
+	
+	
+
+}
+
+.contenedor1 a{
+
+	float: none;
+	margin-right: 2em;
+	color: rgba(178, 16, 228, 0.84);
+	font-size: 22px;
+  margin-left: 35px;
+  
+}
+
+.contenedor1 img{
+
+	width: 150px;
+	height: 120px;
+	margin-right: 6em;
+  margin-left: 0px;
+}
+
+
+
+.contenedor1 a.dropdown-toggle{
+
+  float: none;
+  margin-right: 3em;
+  color: rgba(178, 16, 228, 0.84);
+  font-size: 16px;
+  margin-left: 90px;
+  
+}
+
+
+
+
+
+.portada{
+
+  position: right;
+  list-style: none;
+  text-align: center;
+  margin-top: -40px;
+  margin-left: -155px
+}
+
+
+
+.container2{
+
+	width: 1000px;
+	height: 385;
+  margin: -50px auto;
+  padding: 30px;
+	
+	
+	
+}
+
+
+
+/* inicio de secion*/
+
+
+.formulario{
+
+  width: 30%;
+  transition: 2s;
+  margin-top: 100px;
+  
+    
+}
+
+.fieldset{
+
+    transition: 2s;
+    margin-bottom: 50px;
+    border-color: rgba(213,0,0,1);
+    border-style: groove;
+    border-width: 5px;
+    border-radius: 20px;
+
+}
+
+
+
+
+.container{
+    
+    margin-left: 630px;
+    width: 300px;
+    height: 400px;
+    border: 12px double;
+       
+
+}
+
+
+.logo{
+
+  height: 55px;
+  margin: 10px auto;
+  background-position: center;
+  margin: 20px auto;
+  margin-left: 40px;
+
+}
+.espaciado{
+
+  margin-top: 30px;
+
+}
+
+.row h3{
+
+  color:black;
+  text-align: center;
+  margin: 0px auto;
+  font-size: 18px;
+  margin-left: 75px;
+
+
+}
+
+.form-group h4{
+
+  color:black;
+  text-align: center;
+  margin: 0px auto;
+  font-size: 14px;
+  margin-left: 75px;
+
+}
+legend{
+  border: none;
+}
+
+.Input{
+
+  transition: .8s;
+  background-color: rgba(188, 43, 197, 0.27);
+  color: white;
+  margin-left: 40px;
+  width: 100px;
+  height: 20px;
+
+}
+
+.Input:hover{
+
+  transition: .8s;
+  background-color: rgba(55,71,79,.5);
+  box-shadow: insert;
+  border-bottom-color: blue; 
+}
+
+.Input:focus{
+  
+  transition: .8s;
+  border-bottom-color: red;
+}
+
+.from-control{
+
+background-color: rgba(42, 169, 195, 0.41);
+
+
+
+
+}
+
+
+html{
+
+  font-size: 16px;
+  font-family: arial, sans-serif;
+}
+
+
+
+
+
+.btn-success{
+
+	margin-left: 200px;
+  width: 50px;
+  height: 50px;
+  font-size: 11px;
+}
+
+.form-group li a{
+
+  list-style: none;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.ventana{
+
+    margin-top: -13px;
+    margin-left: 11px;
+}
+
+
+/* formulario*/
+.Registro{
+
+  
+  max-width: 450px;
+  height: auto;
+  
+  margin: 50% auto;
+  padding-bottom: 1rem;
+
+}
+
+.form_top{
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0 1rem;
+  border-top: solid .4rem #F39B53;
+  margin-top: -210px;
+
+}
+.form_top h2{
+
+  font-weight: bold;
+  color: #CAC8C8;
+  font-size: 18px;
+
+}
+
+h2.span{
+
+  color: #F39B53;
+
+}
+.form_reg{
+
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.btn_form{
+
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.input, .btn_button, .btn_reset{
+  
+  background-color: #EFEFEF;
+  padding: .1rem;
+  margin: .4rem 0;
+  border:none;
+  border-bottom: solid #C8C8C8 .2rem;
+  transition: all .5s;
+
+  }
+
+.input:focus{
+
+      border-bottom:  solid #F39B53 .2rem;
+
+  }
+
+.btn_button, .btn_reset{
+
+    width: 40%;
+    border-bottom: none;
+    background-color: #31b1e5;
+    color: white;
+  }
+
+.btn_reset{
+  background-color: #EDA135;
+
+}
+.btn_button:hover{
+  background-color: #4C9ED9;
+}
+
+.btn_reset:hover{
+
+    background-color: #FA9535;
+}
+
+.modal-body{
+
+
+    position: inherit;
+    padding: 30px;
+    width: 472px;
+    height: 650px;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: lightpink;
+}
+
+
+input.input{
+
+  margin-left: 55px;
+  width: 300px;
+}
+
+
+/*LOGINVERDE*/
+
+.mifondo-cont{
+  padding-top: 10px;
+  margin-top: 35px;
+ 
+
+
+}
+.mifondo-top{
+  overflow: hidden; /*Esconde todo objeto que no quepa en el formulario*/
+  padding: 0 25px 15px 25px;
+  background: rgba(9,178,162,0.35);
+  -webkit-border-radius:10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+}
+.miform-left p {
+  opacity: 0.8;
+}
+.miform-left{
+  float: left;
+  width: 400px;
+  padding-top: 25px;
+  text-align: left;
+}
+.miform-right{
+  float: right;
+  width: 25%;
+  padding-top: 25px;
+  font-size: 66px;
+  text-align: right;
+  opacity: 0.3;
+}
+.miform-abajo{
+  padding: 25px 25px 30px 25px;
+  background: rgba(9,178,162,0.3);
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  line-height: 30px;
+}
+.miform-abajo .mibtn {
+  width: 200px;
+  text-align: center;
+}
+input[type="text"],
+input[type="password"],
+textarea,
+textarea.form-control{
+  height: 40px;
+  vertical-align: middle;
+  background:#fff;
+  border:3px solid #fff;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 50px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+textarea.form-control:focus{
+  background: #fff;
+  border: 2px solid #1AAE88;
+}
+button.mibtn{
+  height: 45px;
+  background: #1AAE88;
+  border: 0;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 4px;
+  
+}
+button.mibtn:hover, button.mibtn:active{
+  opacity: 0.6;
+  color: #fff;
+  text-align: center;
+}
+button.mibtn:focus{
+  opacity: 0.6;
+  color: #fff;
+  background: #DE615E;
+  
+}
+
+
+.miform-abajo a{
+
+  color: #9C27B0;
+  text-decoration: none;
+  margin-right: 50px;
+  font-family: 'Raleway';
+  font-size: 16px;
+  
+}
+
+.miform-abajo{
+  height: 250px;  
+}

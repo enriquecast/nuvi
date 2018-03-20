@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText style="text-align: center; font-family: cursive" value="Lista Donaciones"/></h1>
+                        <p:dataTable id="tbl" value="#{donacionesControlador.listarDonacion()}" var="item" paginator="true" rowKey="#{item.idDonacion}" rows="10" rowsPerPageTemplate="10,20,30,40,50">
+                            <p:column style="width: 50px">
+                                <f:facet name="header">
+                                    <h:outputText value="Cod"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idDonacion}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.nombreDonador}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre Donador"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreDonador}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.NDocumentoDonador}">
+                                <f:facet name="header">
+                                    <h:outputText value="Núm identificación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.NDocumentoDonador}"/>
+                            </p:column>
+                            <p:column style="width: 300px">
+                                <f:facet name="header">
+                                    <h:outputText value="Correo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.emailDonador}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor donación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.valorDonacion}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha Donación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaDonacion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Proyecto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fkProyecto.nombreProyecto}"/>
+                            </p:column>
+                            <p:column style="width: 200px">
+                                <f:facet name="header">
+                                    <h:outputText value="Asignar Donaciones"/>
+                                </f:facet> 
+                                <h:commandButton id="btnRegistrar" action="#{donacionesControlador.actualizarDonacion(item)}" value="Asignar" class="btn btn-info"></h:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <l><strong>Descargar Excel</strong></l>
+                            <h:commandLink style="margin-left: 50px ">
+                                <p:graphicImage  id="excelDown" value="../resources/imagenes/Icono_excel.png" style="width: 35px; margin: 0px"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="usuarios"/>
+                            </h:commandLink>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

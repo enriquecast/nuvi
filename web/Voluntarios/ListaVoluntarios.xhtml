@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="content">
+                <div style="height: 300px">
+                    <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="Voluntarios" style="text-align: center; font-family: cursive"/></h1>
+                        <p:dataTable value="#{personalControlador.listarPersonal()}" id="tbl" var="item" paginator="true" rowKey="#{item.idPersonal}" rows="10" rowsPerPageTemplate="10,20,30,40,50">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombrePersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Apellido"/>
+                                </f:facet>
+                                <h:outputText value="#{item.apellidoPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Profesion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.profesionPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Categoria"/>
+                                </f:facet>
+                                <h:outputText value="#{item.categoriaPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="N. Identificación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.NDocumentoPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Contacto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.NContactoPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{item.emailPersonal}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Disponibilidad"/>
+                                </f:facet>
+                                <h:outputText value="#{item.disponibilidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Proyecto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fkProyecto.nombreProyecto}"/>
+                            </p:column>
+                            <p:column style="width: 200px">
+                                <f:facet name="header">
+                                    <h:outputText value="Asignar Donaciones"/>
+                                </f:facet> 
+                                <h:commandButton id="btnAsignarPersonal" class="btn btn-info" value="Asignar a Proyecto" action="#{personalControlador.actualizarPersonal(item)}"></h:commandButton>
+                            </p:column> 
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
